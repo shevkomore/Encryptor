@@ -9,11 +9,12 @@ from listgenerator import ListGenerator
 stream = UMatFileVideoStream(0).start()
 
 def main():
-    with open("seed.txt","r") as f:
-        seed = f.readline()
-    #set up variables for encryption/decryption
-    perms = 500
-    ts = [0]*perms*4
+    with open("seed","r") as f:
+        seed(f.readline())
+   #set up variables for encryption/decryption
+    perms = 300
+    ts = numpy.ndarray([perms, 4], int)
+    #print(ts)
     while not stream.stopped:
         frame = stream.read()
         matrix = frame.get()
@@ -34,6 +35,7 @@ def main():
         #     matrix[[ts[i*4], ts[i*4+1]],:] = matrix[[ts[i*4+1], ts[i*4]],:]
         tf.decode(matrix)
         cv2.imshow('decoded', matrix)
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     stream.stop()
