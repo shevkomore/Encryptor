@@ -11,7 +11,7 @@ class ListGenerator:
 
     def generate(self):
         pcount = self.width
-        plist = np.zeros(shape=(3, pcount, 4))
+        plist = np.zeros(shape=(3, pcount, 4), dtype=int)
         seed(self.seed)
         for i in range(0, 3):
             for j in range(0, pcount):
